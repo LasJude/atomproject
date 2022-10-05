@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+</script>
+
+</head>
+<div layout:fragment="content">
+	<div>
+		<form name="itemGroupOneFrm" id="itemGroupOneFrm" method="post" enctype="multipart/form-data">
+			<table class="diviTable">
+				<tr>
+					<th>
+						관리번호
+					</th>
+					<th>
+						코드명11
+					</th>
+					<th>
+						비고
+					</th>
+					<th>
+						사용
+					</th>
+					<th>
+						삭제
+					</th>
+					<th>
+						&nbsp;
+					</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" id="adminCode" name="adminCode" th:value="${itemGroupOne.adminCode}"/>
+						<input type="hidden" id="seq" name="seq" th:value="${itemGroupOne.seq}"/>
+					</td>
+					<td>
+						<input type="text" id="codeName" name="codeName" th:value="${itemGroupOne.codeName}"/>
+					</td>
+					<td>
+						<input type="text" id="etc" name="etc" th:value="${itemGroupOne.etc}"/>
+					</td>
+					<td>
+						<span>Y : </span><input type="radio" name="useYn" id="useYn" value="Y" th:checked="${itemGroupOne.useYn eq 'Y'}"><br/>
+						<span>N : </span><input type="radio" name="useYn" id="useYn" value="N" th:checked="${itemGroupOne.useYn eq 'N'}">
+					</td>
+					<td>
+						<span>Y : </span><input type="radio" name="delYn" id="delYn" value="Y" th:checked="${itemGroupOne.delYn eq 'Y'}"><br/>
+						<span>N : </span><input type="radio" name="delYn" id="delYn" value="N" th:checked="${itemGroupOne.delYn eq 'N'}">
+					</td>
+					<td>
+						<input type="submit" value="수정" onclick="javascript:itemGroupOneFrm.action='/itemGroupOne/itemGroupOneUpdate.do';"/>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</div>

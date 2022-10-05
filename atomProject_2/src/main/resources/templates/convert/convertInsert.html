@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+
+	function convertCompanyDownload() {
+		document.location.href="/convert/convertCompanyDownload.do";
+	}
+	
+	function convertSalesDownload() {
+		document.location.href="/convert/convertSalesDownload.do";
+	}
+	
+	function convertGoodsDownload() {
+		document.location.href="/convert/convertGoodsDownload.do";
+	}
+	/* function convertGoodsDownload(obj,stype) {
+	    var i, sum=0;
+	    var robj = document.getElementsByName(obj);
+	    for(i=0;i<robj.length;i++){
+	        if(robj[i].checked == true){
+	            sum++;
+	            if(stype == "return") {
+	                return robj[i].value;
+	            } else {
+	            	document.location.href="/convert/convertGoodsDownload.do?goodsType="+robj[i].value;
+//	                alert(robj[i].value);
+	            }
+	        } 
+	    }
+	    if(sum == 0) {
+	        alert("양식 타입을 선택하세요.");
+	        return false;
+	    }
+	} */
+</script>
+</head>
+<div layout:fragment="content">
+	<form name="excelUploadSalesForm" id="excelUploadSalesForm" method="post" enctype="multipart/form-data">
+		<table class="listTable">
+			<tr>
+				<td>
+					매출 파일 업로드
+				</td>
+				<td>
+					<input type="file" name="file" id="file" accept=".xlsx"/>
+				</td>
+				<td>
+ 					<input type="submit" value="입력하기" onclick="javascript:excelUploadSalesForm.action='/convert/salesConvertInsert.do';"/> 
+				</td>
+				<td>
+					<input type="button" value="양식다운로드" onclick="javascript:convertSalesDownload()"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	<form name="excelUploadCompanyForm" id="excelUploadCompanyForm" method="post" enctype="multipart/form-data">
+		<table class="listTable">
+			<tr>
+				<td>
+					거래처 파일 업로드
+				</td>
+				<td>
+					<input type="file" name="file" id="file" accept=".xlsx"/>
+				</td>
+				<td>
+ 					<input type="submit" value="입력하기" onclick="javascript:excelUploadCompanyForm.action='/convert/companyConvertInsert.do';"/> 
+				</td>
+				<td>
+					<input type="button" value="양식다운로드" onclick="javascript:convertCompanyDownload()"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+	
+	<form name="excelUploadGoodsForm" id="excelUploadGoodsForm" method="post" enctype="multipart/form-data">
+		<table class="listTable">
+			<tr>
+				<td>
+					상품 파일 업로드
+				</td>
+				<td>
+					<input type="file" name="file" id="file" accept=".xlsx"/>
+				</td>
+				<td>
+ 					<input type="submit" value="입력하기" onclick="javascript:excelUploadGoodsForm.action='/convert/goodsConvertInsert.do';"/> 
+				</td>
+				<td>
+<!-- 					<input type="button" value="양식다운로드" onclick="javascript:convertGoodsDownload('goodsType', 'alert')"/> -->
+					<input type="button" value="양식다운로드" onclick="javascript:convertGoodsDownload()"/>
+				</td>
+<!-- 				<td>
+					<span>기준코드용 : </span><input type="radio" name="goodsType" id="goodsType" value="basicCode"><br/>
+					<span>단위코드용 : </span><input type="radio" name="goodsType" id="goodsType" value="unitCode"><br/>
+					<span>상세정보용 : </span><input type="radio" name="goodsType" id="goodsType" value="detailCode"><br/>
+					<span>전체코드용 : </span><input type="radio" name="goodsType" id="goodsType" value="allCode">
+				</td> -->
+			</tr>
+		</table>
+	</form>
+		
+</div>

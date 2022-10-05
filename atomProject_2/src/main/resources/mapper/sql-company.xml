@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atom.mapper.SalesCompanyMapper">
+
+<!-- 거래처 리스트 -->
+	<select id="selectSalesCompanyList" resultType="com.atom.dto.SalesCompanyDto">
+		SELECT
+				a.seq
+			,	a.admin_code
+			,	a.deal_divi
+			,	a.code
+			,	a.card
+			,	a.name_1
+			,	a.department
+			,	a.charge
+			,	a.phone_1
+			,	a.phone_2
+			,	a.charge_phone_1
+			,	a.fax
+			,	a.email
+			,	a.deli_address_do
+			,	a.DELI_ADDRESS_CITY
+			,	a.deli_address_etc
+			,	b.name						AS		depa_group_name
+			,	a.depa_group_master
+			,	c.code_name				AS		attri_name
+			,	d.code_name				AS		division_name
+			,	e.code_name				AS		deal_type_name
+			,	f.code_name				AS		course_name
+			,	g.name						AS		employee_name
+			,	a.name_2
+			,	a.number
+			,	a.corpor_number
+			,	a.place_number
+			,	a.ceo
+			,	a.status
+			,	a.type
+			,	a.address_do
+			,	a.address_city
+			,	a.address_etc
+			,	a.tax_charge
+			,	a.tax_phone_1
+			,	a.tax_phone_2
+			,	a.tax_email
+			,	a.deal_yn
+			,	a.event_yn
+			,	a.etc
+			,	a.a_com_charge
+			,	a.a_shut_down_yn
+			,	a.a_shut_down_dt
+			,	h.name						AS		sales_group_name
+			,	a.insert_dt
+			,	a.update_dt
+			,	a.use_yn
+			,	a.del_yn
+		FROM 
+			tb_sales_company a
+		LEFT OUTER JOIN	tb_depa_group b		ON	a.depa_group = b.admin_code
+		LEFT OUTER JOIN	tb_com_attribute c	ON	a.attri = c.admin_code
+		LEFT OUTER JOIN	tb_com_division d	ON	a.divi = d.admin_code
+		LEFT OUTER JOIN	tb_deal_type e		ON	a.deal_type = e.admin_code
+		LEFT OUTER JOIN	tb_course f				ON	a.course = f.admin_code
+		LEFT OUTER JOIN	tb_employee g		ON	a.sales_staff = g.admin_code
+		LEFT OUTER JOIN	tb_sales_group h		ON	a.a_sales_group = h.admin_code
+	</select>
+	
+	<!-- 거래처 상세정보. -->
+	<select id="selectSalesCompanyDetail" resultType="com.atom.dto.SalesCompanyDto" parameterType="String">
+		SELECT
+				a.seq
+			,	a.admin_code
+			,	a.deal_divi
+			,	a.code
+			,	a.card
+			,	a.name_1
+			,	a.department
+			,	a.charge
+			,	a.phone_1
+			,	a.phone_2
+			,	a.charge_phone_1
+			,	a.fax
+			,	a.email
+			,	a.deli_address_do
+			,	a.DELI_ADDRESS_CITY
+			,	a.deli_address_etc
+			,	b.name						AS		depa_group_name
+			,	a.depa_group_master
+			,	c.code_name				AS		attri_name
+			,	d.code_name				AS		division_name
+			,	e.code_name				AS		deal_type_name
+			,	f.code_name				AS		course_name
+			,	g.name						AS		employee_name
+			,	a.name_2
+			,	a.number
+			,	a.corpor_number
+			,	a.place_number
+			,	a.ceo
+			,	a.status
+			,	a.type
+			,	a.address_do
+			,	a.address_city
+			,	a.address_etc
+			,	a.tax_charge
+			,	a.tax_phone_1
+			,	a.tax_phone_2
+			,	a.tax_email
+			,	a.deal_yn
+			,	a.event_yn
+			,	a.etc
+			,	a.a_com_charge
+			,	a.a_shut_down_yn
+			,	a.a_shut_down_dt
+			,	h.name						AS		sales_group_name
+			,	a.insert_dt
+			,	a.update_dt
+			,	a.use_yn
+			,	a.del_yn
+		FROM 
+			tb_sales_company a
+		LEFT OUTER JOIN	tb_depa_group b		ON	a.depa_group = b.admin_code
+		LEFT OUTER JOIN	tb_com_attribute c	ON	a.attri = c.admin_code
+		LEFT OUTER JOIN	tb_com_division d	ON	a.divi = d.admin_code
+		LEFT OUTER JOIN	tb_deal_type e		ON	a.deal_type = e.admin_code
+		LEFT OUTER JOIN	tb_course f				ON	a.course = f.admin_code
+		LEFT OUTER JOIN	tb_employee g		ON	a.sales_staff = g.admin_code
+		LEFT OUTER JOIN	tb_sales_group h		ON	a.a_sales_group = h.admin_code
+		WHERE
+			a.seq = ${seq}
+	</select>
+	
+	<!-- 거래처명 자동완성. -->
+	<select id="selectAutoCompanyName" resultType="com.atom.dto.SalesCompanyDto" parameterType="String">
+		SELECT
+				seq
+			,	admin_code
+			,	code
+			,	name_1
+			,	name_2
+		FROM
+				tb_sales_company
+		WHERE
+				name_1 LIKE "%${searchCompanyName}%"
+	</select>
+</mapper>

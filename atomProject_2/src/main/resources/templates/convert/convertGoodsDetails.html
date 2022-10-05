@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+</script>
+</head>
+<div layout:fragment="content">
+	<div>
+		<table class="resultTable">
+			<tr>
+				<th>관리번호</th>
+				<th>기준코드</th>
+				<th>관리코드</th>
+				<th>바코드</th>
+				<th>품번</th>
+				<th>품번2</th>
+				<th>품번3</th>
+				<th>품번4</th>
+			</tr>
+			<tr>
+				<td th:text="${convert.convertGoodsAdminSeq}"></td>
+				<td th:text="${convert.convertGoodsStandardSeq}"></td>
+				<td th:text="${convert.convertGoodsUnitSeq}"></td>
+				<td th:text="${convert.convertGoodsBarcode}"></td>
+				<td th:text="${convert.convertGoodsNameCode1}"></td>
+				<td th:text="${convert.convertGoodsNameCode2}"></td>
+				<td th:text="${convert.convertGoodsNameCode3}"></td>
+				<td th:text="${convert.convertGoodsNameCode4}"></td>
+			</tr>
+			<tr>
+				<th>책자코드</th>
+				<th>품명</th>
+				<th>품명2</th>
+				<th>규격</th>
+				<th>단위</th>
+				<th>단위수량</th>
+				<th>상품그룹</th>
+				<th>&nbsp;</th>
+			</tr>
+			<tr>
+				<td th:text="${convert.convertGoodsModelName}"></td>
+				<td th:text="${convert.convertGoodsGoodsName1}"></td>
+				<td th:text="${convert.convertGoodsGoodsName2}"></td>
+				<td th:text="${convert.convertGoodsStandard}"></td>
+				<td th:text="${convert.convertGoodsUnit}"></td>
+				<td th:text="${convert.convertGoodsUnitCount}"></td>
+				<td th:text="${convert.convertGoodsGoodsGroup}"></td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<th>분류1</th>
+				<th>분류2</th>
+				<th>분류3</th>
+				<th>분류4</th>
+				<th>매입사</th>
+				<th>제조사</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+			</tr>
+			<tr>
+				<td>
+					<select id="categoryOneList" name="categoryOneList">
+						<option value="">--선택--</option>
+						<option th:each="lists : ${itemOneList}" th:value="${lists.categoryOneAdminCode}" th:utext="${lists.categoryOneName}" th:selected="${convert.itemGroupOneCode} == ${lists.categoryOneAdminCode}"></option>
+					</select>
+				</td>
+				<td>
+					<select id="categoryTwoList" name="categoryTwoList">
+						<option value="">--선택--</option>
+						<option th:each="lists : ${itemTwoList}" th:value="${lists.categoryTwoAdminCode}" th:utext="${lists.categoryTwoName}" th:selected="${convert.itemGroupTwoCode} == ${lists.categoryTwoAdminCode}"></option>
+					</select>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+
+	function convertSalesDownload() {
+		document.location.href="/convert/convertSalesDownload.do";
+	}
+</script>
+</head>
+<div layout:fragment="content">
+	<form name="excelUploadForm" id="excelUploadForm" method="post" enctype="multipart/form-data">
+		<table class="listTable">
+			<tr>
+				<td>
+					매출 파일 업로드
+				</td>
+				<td>
+					<input type="file" name="file" id="file" accept=".xlsx"/>
+				</td>
+				<td>
+ 					<input type="submit" value="수정하기" onclick="javascript:excelUploadForm.action='/convert/salesConvertInsert.do';"/> 
+				</td>
+				<td>
+					<input type="button" value="양식다운로드" onclick="javascript:convertSalesDownload()"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</div>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+
+/**
+	function selectOneChange(adminCode) {
+		$.ajax({
+			type : "GET",
+			url : "/category/categoryTwo.do",
+			dataType : "json",
+			data : $("#oneSelect").serialize(),
+			success : function (result) {
+				$("#twoSelect").find("option").remove().end().append("<option th:utext=''>--선택--</option>");
+				$.each(result, function(i) {
+					$("#twoSelect").append("<option th:value='"+result[i].adminCode+"'>"+result[i].twoName+"</option>")
+				});
+			},
+			error : function(request, error) {
+				alert("error message: " + request.responseText + "\n");
+			}
+		});
+	}
+	*/
+	
+	function selectOneClick(adminCode) {
+		document.getElementById("oneHidden").value = adminCode;
+		$.ajax({
+			type : "GET",
+			url : "/category/categoryOne.do",
+			dataType : "json",
+			data : $("#oneHidden").serialize(),
+			success : function(result) {
+				console.log(result);
+				$("#twoListTable").find("tr").remove().end().append("<tr><th>분류2</th></tr>");
+				$("#threeListTable").find("tr").remove().end().append("<tr><th>분류3</th></tr>");
+				$("#fourListTable").find("tr").remove().end().append("<tr><th>분류4</th></tr>");
+				$.each(result, function(i){
+					$("#twoListTable").append("<tr><td onclick=javascript:selectTwoClick('"+result[i].adminCode+"')>" + result[i].twoName+ "</td></tr>")
+				})
+			},
+			error : function(request, error) {
+				alert("error");
+			}
+		});
+	}
+	
+	function selectTwoClick(twoCode) {
+		document.getElementById("twoHidden").value = twoCode;
+		$.ajax({
+			type : "GET",
+			url : "/category/categoryTwo.do",
+			dataType : "json",
+			data : $("#twoHidden, #oneHidden").serialize(),
+			success : function(result) {
+ 				console.log(result);
+				$("#threeListTable").find("tr").remove().end().append("<tr><th>분류3</th></tr>");
+				$("#fourListTable").find("tr").remove().end().append("<tr><th>분류4</th></tr>");
+				$.each(result, function(i){
+					$("#threeListTable").append("<tr><td onclick=javascript:selectThreeClick('"+result[i].adminCode+"')>"+ result[i].threeName+"</td></tr>")
+				})
+			},
+			error : function(request, error) {
+				alert("error");
+			}
+		});
+	}
+	
+	function selectThreeClick(threeCode) {
+		document.getElementById("threeHidden").value = threeCode;
+		$.ajax({
+			type : "GET",
+			url : "/category/categoryThree.do",
+			dataType : "json",
+			data : $("#twoHidden, #oneHidden, #threeHidden").serialize(),
+			success : function(result) {
+ 				console.log(result);
+				$("#fourListTable").find("tr").remove().end().append("<tr><th>분류4</th></tr>");
+				$.each(result, function(i){
+					$("#fourListTable").append("<tr><td>"+ result[i].fourName+"</td></tr>")
+				})
+			},
+			error : function(request, error) {
+				alert("error");
+			}
+		});
+	}
+	
+</script>
+</head>
+<div layout:fragment="content">
+<input type="hidden" id="oneHidden" name="oneHidden" value=""/>
+<input type="hidden" id="twoHidden" name="twoHidden" value=""/>
+<input type="hidden" id="threeHidden" name="threeHidden" value=""/>
+	<table class="listTable">
+		<tr>
+			<th>분류1</th>
+			<th>분류2</th>
+			<th>분류3</th>
+			<th>분류4</th>
+		</tr>
+		<tr>
+			<td>
+				<select id="oneSelect" name="oneSelect" th:onchange="javascript:selectOneChange(this.value)">
+					<option value="">--선택--</option>
+					<option th:each="lists : ${oneList}" th:value="${lists.categoryOneAdminCode}" th:utext="${lists.categoryOneName}" ></option>
+				</select>
+			</td>
+			<td>
+				<select id="twoSelect" name="twoSelect">
+					<option value="">--선택--</option>
+				</select>
+			</td>
+			<td>
+				<select id="threeSelect" name="threeSelect">
+					<option value="">--선택--</option>
+				</select>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+	<div style="float: left;">
+		<table class="listTable">
+			<tr>
+				<th>분류1</th>
+			</tr>
+			<tr th:if="${#lists.size(oneList)} > 0" th:each="lists : ${oneList}">
+				<td th:text="${lists.categoryOneName}" th:onclick="javascript:selectOneClick([[${lists.categoryOneAdminCode}]])"></td>
+			</tr>
+		</table>
+	</div>
+	<div style="float: left;">
+		<table id="twoListTable" class="listTable">
+			<tr>
+				<th>분류2</th>
+			</tr>
+		</table>
+	</div>
+	<div style="float: left;">
+		<table id="threeListTable" class="listTable">
+			<tr>
+				<th>분류3</th>
+			</tr>
+		</table>
+	</div>
+	<div style="float: left;">
+		<table id="fourListTable" class="listTable">
+			<tr>
+				<th>분류4</th>
+			</tr>
+		</table>
+	</div>
+		
+</div>
+</html>

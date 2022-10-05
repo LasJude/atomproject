@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+$(function() {
+	$("#searchGoodsName" ).autocomplete({
+		
+		source : function(request, response) {
+			$.ajax({
+				type : "GET",
+				contentType: "application/json;charset=UTF-8",
+				url : "/goods/goodsAutoSearch.do",
+				data : $("#searchGoodsName").serialize(),
+//				dataType : "text",
+				success : function(data) {
+					var obj = JSON.parse(data);
+					response(
+					$.map(obj, function(item){
+						return {
+							label: item.goodsName1+' / '+item.standard,
+							value: item.adminSeq
+						}
+					}));
+					for(var i=0; i<obj.length; i++) {
+						var accountList = obj[i];
+					}
+				},
+				error : function(request, error) {
+					alert("message: " + request.responseText + "\n");
+				}
+			});
+		},
+		select : function(event, ui) {
+			return false;
+		},
+		focus : function(event, ui) {
+			$("#searchModelName").val("");
+			$("#searchGoodsName").val(ui.item.label);
+			$("#searchAdminSeq").val(ui.item.value);
+			return false;
+//			event.preventDefault();
+			
+		},
+		minLength: 2,
+		delay: 500,
+		autoFocus: false
+	})
+});
+
+$(function() {
+	$("#searchModelName" ).autocomplete({
+		source : function(request, response) {
+			$.ajax({
+				type : "GET",
+				contentType: "application/json;charset=UTF-8",
+				url : "/goods/goodsAutoSearch.do",
+				data : $("#searchModelName").serialize(),
+//				dataType : "text",
+				success : function(data) {
+					var obj = JSON.parse(data);
+					response(
+					$.map(obj, function(item){
+						return {
+							label: item.modelName+' / '+item.standard,
+							value: item.adminSeq
+						}
+					}));
+					for(var i=0; i<obj.length; i++) {
+						var accountList = obj[i];
+					}
+				},
+				error : function(request, error) {
+					alert("message: " + request.responseText + "\n");
+				}
+			});
+		},
+		select : function(event, ui) {
+			return false;
+		},
+		focus : function(event, ui) {
+			$("#searchGoodsName").val("");
+			$("#searchModelName").val(ui.item.label);
+			$("#searchAdminSeq").val(ui.item.value);
+			return false;
+//			event.preventDefault();
+			
+		},
+		minLength: 2,
+		delay: 500,
+		autoFocus: false
+	})
+});
+
+ 	function searchGoodsList() {
+		var searchGoodsName = document.getElementById('searchGoodsName').value;
+		var searchModelName = document.getElementById('searchModelName').value;
+		
+		if(searchGoodsName != '' && searchModelName != '') {
+			alert("상품명 or 모델명만 입력하세요.");
+		} else if(searchGoodsName == '' && searchModelName == '') {
+			if(confirm("전체 조회 하시겠습니까?") == true) {
+				alert("전체 조회 시작");
+			}
+		} else {
+			document.goodsSearchFrm.action = '/goods/searchGoodsList.do';
+			document.goodsSearchFrm.submit();
+		}
+	}
+	
+</script>
+</head>
+<div layout:fragment="content">
+	<form name="goodsSearchFrm" id="goodsSearchFrm" method="post" enctype="multipart/form-data">
+		<table class="searchTable">
+			<tr>
+				<th>상품관리</th>
+				<td>
+					상품명 : <input type="text" id="searchGoodsName" name="searchGoodsName" value=""/><br/>
+					모델명 : <input type="text" id="searchModelName" name="searchModelName" value=""/>
+					<input type="hidden" id="searchAdminSeq" name="searchAdminSeq"/>
+				</td>
+				<td>
+					<input type="button" value="검색" onclick="javascript:searchGoodsList()"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+	<form name="goodsListFrm" id="goodsListFrm">
+		<table class="listTable">
+			<tr>
+				<th>관리번호</th>
+				<th>상품명</th>
+				<th>모델명</th>
+				<th>규격</th>
+			</tr>
+			<tr th:if="${#lists.size(goodsList)} > 0" th:each="lists : ${goodsList}">
+				<td th:text="${lists.adminSeq}"></td>
+				<td th:text="${lists.goodsName1}"></td>
+				<td th:text="${lists.modelName}"></td>
+				<td th:text="${lists.standard}"></td>
+			</tr>
+		</table>
+	</form>
+</div>

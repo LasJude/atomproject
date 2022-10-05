@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+
+	function verify(verifyType) {
+		location.href="/convert/verifyList.do?verifyType="+verifyType;
+	}
+	
+</script>
+</head>
+<div layout:fragment="content">
+	<div>
+		<table class="convertTable">
+			<tr>
+				<th>거래처</th>
+				<th>상품</th>
+				<th>고객속성</th>
+				<th>매입처</th>
+				<th>제조사</th>
+				<th>고객분류</th>
+				<th>부서그룹</th>
+				<th>거래분류</th>
+				<th>사원</th>
+				<th>매출코스</th>
+				<th>품목그룹1</th>
+				<th>품목그룹2</th>
+				<th>품목그룹3</th>
+				<th>품목그룹4</th>
+				<th>품목그룹5</th>
+			</tr>
+			<tr>
+				<td th:text="${convertDto.emptyCompanySize}"></td>
+				<td th:text="${convertDto.emptyGoodsSize}"></td>
+				<td th:text="${convertDto.emptyAttriSize}"></td>
+				<td th:text="${convertDto.emptyBuyComSize}"></td>
+				<td th:text="${convertDto.emptyMakeComSize}"></td>
+				<td th:text="${convertDto.emptyComDiviSize}"></td>
+				<td th:text="${convertDto.emptyDepaGroupSize}"></td>
+				<td th:text="${convertDto.emptyComDealTypeSize}"></td>
+				<td th:text="${convertDto.emptyEmployeeSize}"></td>
+				<td th:text="${convertDto.emptyCourseSize}"></td>
+				<td th:text="${convertDto.emptyItemGroupOneSize}"></td>
+				<td th:text="${convertDto.emptyItemGroupTwoSize}"></td>
+				<td th:text="${convertDto.emptyItemGroupThreeSize}"></td>
+				<td th:text="${convertDto.emptyItemGroupFourSize}"></td>
+				<td th:text="${convertDto.emptyItemGroupFiveSize}"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyCompany')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyGoods')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyAttri')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyBuyCom')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyMakeCom')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyComDivi')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyDepaGroup')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyComDealType')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyEmployee')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyCourse')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyItemGroupOne')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyItemGroupTwo')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyItemGroupThree')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyItemGroupFour')"></td>
+				<td><input type="button" value="검증" onclick="javascript:verify('emptyItemGroupFive')"></td>
+			</tr>
+		</table>
+		
+		<table class="resultTable">
+			<tr>
+				<th>검증</th>
+				<th>일자</th>
+				<th>거래처연동코드</th>
+				<th>거래처(부서)</th>
+				<th>관리번호</th>
+				<th>상품코드</th>
+				<th>책자코드</th>
+				<th>상품명</th>
+				<th>규격</th>
+				<th>단위</th>
+				<th>단위수량</th>
+				<th>매입처</th>
+				<th>제조사</th>
+				<th>수량</th>
+				<th>단가</th>
+				<th>금액</th>
+				<th>소비자가</th>
+				<th>고객속성</th>
+			</tr>
+			<tr th:if="${#lists.size(convertList)} > 0" th:each="lists : ${convertList}">
+ 				<td th:text="${lists.verify}"></td>
+				<td th:text="${lists.salesDt}"></td>
+				<td th:text="${lists.comCode}"></td>
+				<td th:text="${lists.comCompany}"></td>
+				<td th:text="${lists.goodsCode}"></td>
+				<td th:text="${lists.barcode}"></td>
+				<td th:text="${lists.modelCode}"></td>
+				<td th:text="${lists.goodsName}"></td>
+				<td th:text="${lists.standard}"></td>
+				<td th:text="${lists.unit}"></td>
+				<td th:text="${lists.unitCount}"></td>
+				<td th:text="${lists.buyCompany}"></td>
+				<td th:text="${lists.makeCompany}"></td>
+				<td th:text="${lists.salesCount}"></td>
+				<td th:text="${lists.price}"></td>
+				<td th:text="${lists.salesPrice}"></td>
+				<td th:text="${lists.customerPrice}"></td>
+				<td th:text="${lists.comAttri}"></td>
+			</tr>
+		</table>
+	</div>
+</div>

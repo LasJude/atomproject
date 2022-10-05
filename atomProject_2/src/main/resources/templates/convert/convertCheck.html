@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+</script>
+</head>
+<div layout:fragment="content">
+	<table class="listTable">
+		<tr>
+			<td><a th:href="@{/convert/convertSalesResult.do}">매출 입력 검증</a></td>
+			<td><a th:href="@{/convert/convertCompanyResult.do}">매출처 입력 검증</a></td>
+			<td><a th:href="@{/convert/convertGoodsResult.do}">상품 입력 검증</a>
+		</tr>
+	</table>
+</div>

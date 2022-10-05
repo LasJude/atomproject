@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atom.mapper.BasicMapper">
+
+	<!-- 품목그룹 1 List Select -->	
+<!-- 
+	<select id="selectItemGroupOneList" parameterType="com.atom.dto.ItemGroupDto" resultType="com.atom.dto.ItemGroupDto">
+		SELECT 
+				seq
+			,	admin_code
+			,	code_name
+			,	etc
+			,	use_yn
+			,	del_yn
+			,	insert_dt
+			,	update_dt
+		FROM
+			tb_item_group_one
+		ORDER BY
+			seq asc
+	</select>
+	 -->
+	<!-- 품목그룹 1 엑셀 insert or update -->
+	<insert id="insertUpdateItemGroupOne" parameterType="java.util.List">
+		<foreach item="item" collection="list" separator=" ; ">
+		INSERT INTO
+			tb_item_group_one
+			(
+				seq
+			,	admin_code
+			,	code_name
+			,	etc
+			,	use_yn
+			,	del_yn
+			,	insert_dt
+			,	update_dt
+			)
+		VALUES
+			(
+				<if test="item.seq != null">
+				${item.seq}
+				</if>
+				<if test="item.seq = null">
+				null
+				</if>
+			,	"${item.adminCode}"
+			,	"${item.codeName}"
+			,	"${item.etc}"
+			,	"Y"
+			,	"N"
+			,	now()
+			,	now()
+			)
+		ON
+			DUPLICATE key
+		UPDATE
+			admin_code	= "${item.adminCode}"
+		,	code_name		= "${item.codeName}"
+		,	etc 				= "${item.etc}"
+		,	update_dt 		= now()
+		</foreach>
+	</insert>
+	
+	<select id="selectItemGroupOneDetail" parameterType="String" resultType="com.atom.dto.ItemGroupDto">
+		SELECT
+				seq
+			,	admin_code
+			,	code_name
+			,	etc
+			,	use_yn
+			,	del_yn
+		 FROM
+		 		tb_item_group_one
+		 WHERE
+		 		seq = ${seq}
+	</select>
+	
+	<update id="updateItemGroupOne" parameterType="com.atom.dto.ItemGroupDto">
+		UPDATE
+				tb_item_group_one
+		SET
+				admin_code	=	"${adminCode}"
+			,	code_name		=	"${codeName}"
+			,	etc				=	"${etc}"
+			,	use_yn			=	"${useYn}"
+			,	del_yn			=	"${delYn}"
+			,	update_dt		=	now()
+		WHERE
+				seq				=	${seq}
+	</update>
+	
+	<!-- 카테고리 1 리스트. -->
+	<select id="selectCategoryOneList" resultType="com.atom.dto.BasicDto" parameterType="com.atom.dto.BasicDto">
+		SELECT
+				seq
+			,	admin_code	AS		category_one_admin_code
+			,	name				AS		category_one_name
+		FROM
+				tb_category_1
+		WHERE
+					use_yn	=	'y'
+			AND	del_yn	=	'n'
+			<if test="categoryOneName != null">
+			AND	name		=	"${categoryOneName}"
+			</if>
+		ORDER BY
+				admin_code	ASC
+	</select>
+	
+	<!-- 카테고리 2 리스트. -->
+	<select id="selectCategoryTwoList" resultType="com.atom.dto.BasicDto" parameterType="com.atom.dto.BasicDto">
+		SELECT
+				seq
+			,	admin_code	AS		category_two_admin_code
+			,	name				AS		category_two_name
+		FROM
+				tb_category_2
+		WHERE
+					use_yn		=	'y'
+			AND	del_yn		=	'n'
+			<if test="categoryOneAdminCode != null">
+			AND	category_1	=	"${categoryOneAdminCode}"
+			</if>
+			<if test="categoryTwoName != null">
+			AND	name			=	"${categoryTwoName}"
+			</if>
+		ORDER BY
+				admin_code	ASC
+	</select>
+	
+	<!-- 카테고리 3 검색. -->
+	<select id="selectCategoryThreeList" resultType="com.atom.dto.BasicDto" parameterType="com.atom.dto.BasicDto">
+		SELECT
+				seq
+			,	admin_code	AS		category_three_admin_code
+			,	name				AS		category_three_name
+		FROM
+				tb_category_3
+		WHERE
+					use_yn	=	'y'
+			AND	del_yn	=	'n'
+			<if test="categoryOneAdminCode != null">
+			AND	category_1 = "${categoryOneAdminCode}"
+			</if>
+			<if test="categoryTwoAdminCode != null">
+			AND	category_2 = "${categoryTwoAdminCode}"
+			</if>
+			<if test="categoryThreeName != null">
+			AND	name		=	"${categoryThreeName}"
+			</if>
+	</select>
+	
+	<!-- 카테고리 4 검색. -->
+	<select id="selectCategoryFourList" resultType="com.atom.dto.BasicDto" parameterType="com.atom.dto.BasicDto">
+		SELECT
+				seq
+			,	admin_code	AS		category_four_admin_code
+			,	name				AS		category_four_name
+		FROM
+				tb_category_4
+		WHERE
+					use_yn	=	'y'
+			AND	del_yn	=	'n'
+			<if test="categoryOneAdminCode != null">
+			AND	category_1	= "${categoryOneAdminCode}"
+			</if>
+			<if test="categoryTwoAdminCode != null">
+			AND	category_2	=	"${categoryTwoAdminCode}"
+			</if>
+			<if test="categoryThreeAdminCode != null">
+			AND	category_3	=	"${categoryThreeAdminCode}"
+			</if>
+			<if test="categoryFourName != null">
+			AND	name		=	"${categoryFourName}"
+			</if>
+	</select>
+	
+	<!-- 품목그룹 1 검색. -->
+	<select id="selectItemGroupOneList" resultType="com.atom.dto.BasicDto" parameterType="com.atom.dto.BasicDto">
+		SELECT
+				seq
+			,	admin_code
+			,	code_name
+			,	etc
+		FROM
+				tb_item_group_one
+		WHERE
+					use_yn	=	'y'
+			AND	del_yn	=	'n'
+			<if test="itemGroupOneCode != null">
+			AND	admin_code	=	"${itemGroupOneCode}"
+			</if>
+			<if test="itemGroupOneName != null">
+			AND	code_name		=	"${itemGroupOneName}"
+			</if>
+	</select>
+	
+	<!-- 품목그룹 2 검색. -->
+	<select id="selectItemGroupTwoList" resultType="com.atom.dto.BasicDto" parameterType="com.atom.dto.BasicDto">
+		SELECT
+				seq
+			,	admin_code
+			,	code_name
+			,	etc
+		FROM
+				tb_item_group_two
+		WHERE
+					use_yn	=	'y'
+			AND	del_yn	=	'n'
+			<if test="itemGroupTwoCode != null">
+			AND	admin_code	=	"${itemGroupTwoCode}"
+			</if>
+			<if test="itemGroupTwoName != null">
+			AND	code_name		=	"${itemGroupTwoName}"
+			</if>
+	</select>
+	
+	<!-- 품목그룹 3 검색. -->
+	<select id="selectItemGroupThreeList" resultType="com.atom.dto.BasicDto" parameterType="com.atom.dto.BasicDto">
+		SELECT
+				seq
+			,	admin_code
+			,	code_name
+			,	etc
+		FROM
+				tb_item_group_three
+		WHERE
+					use_yn	=	'y'
+			AND	del_yn	=	'n'
+			<if test="itemGroupThreeCode != null">
+			AND	amdin_code	=	"${itemGroupThreeCode}"
+			</if>
+			<if test="itemGroupThreeName != null">
+			AND	code_name		=	"${itemGroupThreeName}"
+			</if>
+	</select>
+	
+	<!-- 품목그룹 4 검색. -->
+	<select id="selectItemGroupFourList" resultType="com.atom.dto.BasicDto" parameterType="com.atom.dto.BasicDto">
+		SELECT
+				seq
+			,	admin_code
+			,	code_name
+			,	etc
+		FROM
+				tb_item_group_four
+		WHERE
+					use_yn	=	'y'
+			AND	del_yn	=	'n'
+			<if test="itemGroupFourCode != null">
+			AND	admin_code	=	"${itemGroupFourCode}"
+			</if>
+			<if test="itemGroupFourName != null">
+			AND	code_name		=	"${itemGroupFourName}"
+			</if>
+	</select>
+	
+	<!-- 품목그룹 5 검색. -->
+	<select id="selectItemGroupFiveList" resultType="com.atom.dto.BasicDto" parameterType="com.atom.dto.BasicDto">
+		SELECT
+				seq
+			,	admin_code
+			,	code_name
+			,	etc
+		FROM
+				tb_item_group_five
+		WHERE
+					use_yn	=	'y'
+			AND	del_yn	=	'n'
+			<if test="itemGroupFiveCode != null">
+			AND	admin_code	=	"${itemGroupFiveCode}"
+			</if>
+			<if test="itemGroupFiveName != null">
+			AND	code_name		=	"${itemGroupFiveName}"
+			</if>
+	
+	</select>
+</mapper>

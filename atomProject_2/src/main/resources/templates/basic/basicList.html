@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+</script>
+
+</head>
+<div layout:fragment="content">
+	<div>
+		<table class="listTable">
+			<tr>
+				<td>
+					<a th:href="@{/basic/salesCompanyList.do}">거래처 관리</a>
+				</td>
+				<td>
+					<a th:href="@{/basic/categoryList.do}">분류 관리</a>
+				</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>
+					<a th:href="@{/basic/itemGroupOneList.do}">품목그룹 1</a>
+				</td>
+				<td>
+					품목그룹 2
+				</td>
+				<td>
+					품목그룹 3
+				</td>
+				<td>
+					품목그룹 4
+				</td>
+				<td>
+					품목그룹 5
+				</td>
+			</tr>
+			<tr>
+				<td>
+					거래분류
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</html>

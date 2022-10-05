@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+</script>
+</head>
+<div layout:fragment="content">
+	<!-- 거래처 -->
+	<th:block th:if="${verifyType == 'emptyCompany'}">
+		<table class="resultTable">
+			<tr>
+				<th>순번</th>
+				<th>거래처연동코드</th>
+				<th>거래처명</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists, index : ${verifyList}">
+				<td th:text="${index.count}"></td>
+				<td th:text="${lists.emptyCompany}"></td>
+				<td th:text="${lists.comCompany}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 상품 -->
+	<th:block th:if="${verifyType == 'emptyGoods'}">
+		<table class="resultTable">
+			<tr>
+				<th>상품코드</th>
+				<th>상품명</th>
+				<th>규격</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists : ${verifyList}">
+				<td th:text="${lists.emptyGoods}"></td>
+				<td th:text="${lists.goodsName}"></td>
+				<td th:text="${lists.standard}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 고객속성 -->
+	<th:block th:if="${verifyType == 'emptyAttri'}">
+		<table class="resultTable">
+			<tr>
+				<th>고객속성</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyAttri}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 매입처 -->
+	<th:block th:if="${verifyType == 'emptyBuyCom'}">
+		<table class="resultTable">
+			<tr>
+				<th>매입처명</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyBuyCom}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 제조사 -->
+	<th:block th:if="${verifyType == 'emptyMakeCom'}">
+		<table class="resultTable">
+			<tr>
+				<th>제조사명</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyMakeCom}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 고객분류 -->
+	<th:block th:if="${verifyType == 'emptyComDivi'}">
+		<table class="resultTable">
+			<tr>
+				<th>고객분류명</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyComDivi}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 부서그룹 -->
+	<th:block th:if="${verifyType == 'emptyDepaGroup'}">
+		<table class="resultTable">
+			<tr>
+				<th>부서그룹 명</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyDepaGroup}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 사원 -->
+	<th:block th:if="${verifyType == 'emptyEmployee'}">
+		<table class="resultTable">
+			<tr>
+				<th>사원명</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyEmployee}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 매출코스 -->
+	<th:block th:if="${verifyType == 'emptyCourse'}">
+		<table class="resultTable">
+			<tr>
+				<th>매출코스</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyCourse}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 품목그룹1 -->
+	<th:block th:if="${verifyType == 'emptyItemGroupOne'}">
+		<table class="resultTable">
+			<tr>
+				<th>품목그룹1</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyItemGroupOne}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 품목그룹2 -->
+	<th:block th:if="${verifyType == 'emptyItemGroupTwo'}">
+		<table class="resultTable">
+			<tr>
+				<th>품목그룹2</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyItemGroupTwo}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 품목그룹3 -->
+	<th:block th:if="${verifyType == 'emptyItemGroupThree'}">
+		<table class="resultTable">
+			<tr>
+				<th>품목그룹3</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyItemGroupThree}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 품목그룹4 -->
+	<th:block th:if="${verifyType == 'emptyItemGroupFour'}">
+		<table class="resultTable">
+			<tr>
+				<th>품목그룹4</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyItemGroupFour}"></td>
+			</tr>
+		</table>
+	</th:block>
+	
+	<!-- 품목그룹5 -->
+	<th:block th:if="${verifyType == 'emptyItemGroupFive'}">
+		<table class="resultTable">
+			<tr>
+				<th>품목그룹5</th>
+			</tr>
+			<tr th:if="${#lists.size(verifyList)} > 0" th:each="lists: ${verifyList}">
+				<td th:text="${lists.emptyItemGroupFive}"></td>
+			</tr>
+		</table>
+	</th:block>
+</div>

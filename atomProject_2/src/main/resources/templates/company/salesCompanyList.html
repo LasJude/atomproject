@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+
+	$(function() {
+		$("#searchCompanyName" ).autocomplete({
+			source : function(request, response) {
+				$.ajax({
+					type : "GET",
+					contentType: "application/json;charset=UTF-8",
+					url : "/company/companyAutoSearch.do",
+					data : $("#searchCompanyName").serialize(),
+	//				dataType : "text",
+					success : function(data) {
+						var obj = JSON.parse(data);
+						response(
+						$.map(obj, function(item){
+							return {
+								label: item.name,
+								value: item.adminCode
+							}
+						}));
+						for(var i=0; i<obj.length; i++) {
+							var accountList = obj[i];
+						}
+					},
+					error : function(request, error) {
+						alert("message: " + request.responseText + "\n");
+					}
+				});
+			},
+			select : function(event, ui) {
+				return false;
+			},
+			focus : function(event, ui) {
+				$("#searchCompanyName").val(ui.item.label);
+				$("#searchAccountCode").val(ui.item.value);
+				return false;
+	//			event.preventDefault();
+				
+			},
+			minLength: 2,
+			delay: 500,
+			autoFocus: false
+		})
+	});
+
+	function salesCompanyDetail(seq) {
+		document.location.href="/company/salesCompanyDetail.do?seq="+seq;
+	}
+	
+	function searchCompany() {
+		document.location.href="";
+	}
+	
+
+	
+</script>
+</head>
+<div layout:fragment="content">
+
+	<table class="searchTable">
+		<tr>
+			<th>거래처명</th>
+			<td>
+				<input type="text" id="searchCompanyName" name="searchCompanyName"/>
+				<input type="text" id="searchAccountCode" name="searchAccountCode"/>
+				<input type="button" value="검색" onclick="javascript:searchCompany()"/>
+			</td>
+		</tr>
+	</table>
+	<table class="listTable">
+		<tr>
+			<th>관리번호</th>
+			<th>연동코드</th>
+<!-- 			<th>거래구분</th> -->
+			<th>코드</th>
+<!-- 			<th>고객카드</th> -->
+			<th>거래처명</th>
+<!--  			<th>부서</th> -->
+<!-- 			<th>담당자</th> -->
+			<th>전화번호</th>
+<!-- 			<th>휴대전화</th> -->
+<!-- 			<th>담당전화</th> -->
+			<th>팩스</th>
+			<th>이메일</th>
+			<th>배송주소</th>
+<!-- 			<th>부서그룹</th> -->
+<!-- 			<th>부서그룹주거래처</th> -->
+<!-- 			<th>고객속성</th> -->
+<!-- 			<th>고객분류</th> -->
+<!-- 			<th>거래분류</th> -->
+<!-- 			<th>매출코스</th> -->
+<!-- 			<th>영업담당</th> -->
+			<th>사업자상호</th>
+			<th>사업자번호</th>
+<!-- 			<th>법인번호</th> -->
+<!-- 			<th>종사업자번호</th> -->
+<!-- 			<th>대표자</th> -->
+<!-- 			<th>업태</th> -->
+<!-- 			<th>종목</th> -->
+<!-- 			<th>사업자주소</th> -->
+<!-- 			<th>계산서담당</th> -->
+<!-- 			<th>계산서담당전화번호</th> -->
+<!-- 			<th>계산서담당핸드폰</th> -->
+<!-- 			<th>계산서이메일</th> -->
+			<th>거래중지</th>
+			<th>행사제외</th>
+			<th>비고</th>
+			<th>담당지점</th>
+			<th>폐업여부</th>
+			<th>폐업일</th>
+			<th>매출합치기</th>
+<!-- 			<th>입력일</th> -->
+<!-- 			<th>수정일</th> -->
+			<th>사용여부</th>
+			<th>&nbsp;</th>
+		</tr>
+		<tr th:if="${#lists.size(companyList)} > 0" th:each="lists : ${companyList}">
+			<td th:text="${lists.seq}"></td>					<!-- 관리번호 -->
+			<td th:text="${lists.adminCode}"></td>		<!-- 연동코드 -->
+<!-- 			<td th:text="${lists.dealDivi}"></td>			거래구분 -->
+			<td th:text="${lists.code}"></td>				<!-- 코드 -->
+<!-- 			<td th:text="${lists.card}"></td>				카드 -->
+			<td th:text="${lists.name1}"></td>				<!-- 거래처명 -->
+<!-- 			<td th:text="${lists.department}"></td>		부서명 -->
+<!-- 			<td th:text="${lists.charge}"></td>				담당자 -->
+			<td th:text="${lists.phone1}"></td>			<!-- 전화번호 -->
+<!-- 			<td th:text="${lists.phone2}"></td>			휴대전화 -->
+<!-- 			<td th:text="${lists.chargePhone1}"></td>	담당전화 -->
+			<td th:text="${lists.fax}"></td>					<!-- 팩스 -->
+			<td th:text="${lists.email}"></td>				<!-- 이메일 -->
+			<td th:text="${lists.deliAddressDo}+' '+${lists.deliAddressCity}+' '+${lists.deliAddressEtc}"></td>	<!-- 주소 -->
+<!-- 			<td th:text="${lists.depaGroupName}"></td>	부서그룹명 -->
+<!-- 			<td th:text="${lists.depaGroupMaster}"></td>	부서그룹주거래처 -->
+<!-- 			<td th:text="${lists.attriName}"></td>		고객속성명 -->
+<!-- 			<td th:text="${lists.divisionName}"></td>	고객분류명 -->
+<!-- 			<td th:text="${lists.dealTypeName}"></td>	거래분류명 -->
+<!-- 			<td th:text="${lists.courseName}"></td>		매출코스 -->
+<!-- 			<td th:text="${lists.employeeName}"></td>	영업담당 -->
+			<td th:text="${lists.name2}"></td>				<!-- 사업자상호 -->
+			<td th:text="${lists.number}"></td>			<!-- 사업자번호 -->
+<!-- 			<td th:text="${lists.corporNumber}"></td>	법인번호 -->
+<!-- 			<td th:text="${lists.placeNumber}"></td>	종사업자번호 -->
+<!-- 			<td th:text="${lists.ceo}"></td>					대표자 -->
+<!-- 			<td th:text="${lists.status}"></td>				업태 -->
+<!-- 			<td th:text="${lists.type}"></td>				종목 -->
+<!-- 			<td th:text="${lists.addressDo}+' '+${lists.addressCoty}+' '+${lists.addressEtc}"></td>		사업자주소 -->
+<!-- 			<td th:text="${lists.taxCharge}"></td>		계산서담당 -->
+<!-- 			<td th:text="${lists.taxPhone1}"></td>		계산서담당전화번호 -->
+<!-- 			<td th:text="${lists.taxPhone2}"></td>		계산서담당핸드폰 -->
+<!-- 			<td th:text="${lists.taxEmail}"></td>			계산서이메일 -->
+			<td th:text="${lists.dealYn}"></td>			<!-- 거래중지 -->
+			<td th:text="${lists.eventYn}"></td>			<!-- 행사대상 -->
+			<td th:text="${lists.etc}"></td>					<!-- 비고 -->
+			<td th:text="${lists.aComCharge}"></td>		<!-- 담당지점 -->
+			<td th:text="${lists.aShutDownYn}"></td>	<!-- 폐업여부 -->
+			<td th:text="${lists.aShutDownDt}"></td>	<!-- 폐업일 -->
+			<td th:text="${lists.salesGroupName}"></td>	<!-- 매출합치기 -->
+<!-- 			<td th:text="${lists.insertDt}"></td>			입력일 -->
+<!-- 			<td th:text="${lists.updateDt}"></td>			수정일 -->
+			<td th:text="${lists.useYn}"></td>				<!-- 사용여부 -->
+			<td><input type="button" value="수정" th:onclick="javascript:salesCompanyDetail([[${lists.seq}]])"/></td>
+		</tr>
+	</table>
+</div>

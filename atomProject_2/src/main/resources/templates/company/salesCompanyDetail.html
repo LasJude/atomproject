@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+
+	function salesCompanyDetail(seq) {
+		document.location.href="/company/salesCompanyDetail.do?seq="+seq;
+	}
+	
+</script>
+</head>
+<div layout:fragment="content">
+	<table class="detailTable">
+		<tr>
+			<th>관리코드</th>
+			<td th:text="${companyDto.adminCode}"></td>
+			<th>코드</th>
+			<td th:text="${companyDto.code}"></td>
+			<th>거래구분</th>
+			<td th:text="${companyDto.dealDivi}"></td>
+			<th>고객카드</th>
+			<td th:text="${companyDto.card}"></td>
+			<th>고객속성</th>
+			<td th:text="${companyDto.attriName}"></td>
+			<th>고객분류</th>
+			<td th:text="${companyDto.divisionName}"></td>
+		</tr>
+		<tr>
+			<th>거래처</th>
+			<td th:text="${companyDto.name1}"></td>
+			<th>부서</th>
+			<td th:text="${companyDto.department}"></td>
+			<th>부서그룹명</th>
+			<td th:text="${companyDto.depaGroupName}"></td>
+			<th>부서그룹 주거래처</th>
+			<td th:text="${companyDto.depaGroupMaster}"></td>
+			<th>배송주소</th>
+			<td colspan="3" th:text="${companyDto.deliAddressDo} + ' ' + ${companyDto.deliAddressCity} + ' ' + ${companyDto.deliAddressEtc}"></td>
+		</tr>
+		<tr>
+			<th>담당자</th>
+			<td th:text="${companyDto.charge}"></td>
+			<th>전화번호</th>
+			<td th:text="${companyDto.phone1}"></td>
+			<th>휴대전화</th>
+			<td th:text="${companyDto.phone2}"></td>
+			<th>담당전화</th>
+			<td th:text="${companyDto.chargePhone1}"></td>
+			<th>팩스</th>
+			<td th:text="${companyDto.fax}"></td>
+			<th>이메일</th>
+			<td th:text="${companyDto.email}"></td>
+		</tr>
+		<tr>
+		
+			<th>거래분류</th>
+			<td th:text="${companyDto.dealTypeName}"></td>
+			<th>매출코스</th>
+			<td th:text="${companyDto.courseName}"></td>
+			<th>영업담당</th>
+			<td th:text="${companyDto.employeeName}"></td>
+			<td colspan="6"></td>
+		</tr>
+		<tr>
+			<th>사업자상호</th>
+			<td th:text="${companyDto.name2}"></td>
+			<th>법인번호</th>
+			<td th:text="${companyDto.corporNumber}"></td>
+			<th>사업자번호</th>
+			<td th:text="${companyDto.number}"></td>
+			<th>종사업장번호</th>
+			<td th:text="${companyDto.placeNumber}"></td>
+			<th>주소</th>
+			<td colspan="3" th:text="${companyDto.addressDo} + ' ' + ${companyDto.addressCity} + ' ' + ${companyDto.addressEtc}"></td>
+		</tr>
+		<tr>
+			<th>대표자</th>
+			<td th:text="${companyDto.ceo}"></td>
+			<th>업태</th>
+			<td th:text="${companyDto.status}"></td>
+			<th>종목</th>
+			<td th:text="${companyDto.type}"></td>
+			<td colspan="6">&nbsp;</td>
+		</tr>
+		<tr>
+			<th>계산서담당자</th>
+			<td th:text="${companyDto.taxCharge}"></td>
+			<th>계산서담당전화번호</th>
+			<td th:text="${companyDto.taxPhone1}"></td>
+			<th>계산서담당휴대전화</th>
+			<td th:text="${companyDto.taxPhone2}"></td>
+			<th>계산서이메일</th>
+			<td th:text="${companyDto.taxEmail}"></td>
+			<th>거래중지</th>
+			<td th:text="${companyDto.dealYn}"></td>
+			<th>행사제외</th>
+			<td th:text="${companyDto.eventYn}"></td>
+		</tr>
+		<tr>
+			<th>비고</th>
+			<td colspan="11" th:text="${companyDto.etc}"></td>
+		</tr>
+		<tr>
+			<th>담당지점</th>
+			<td th:text="${companyDto.aComCharge}"></td>
+			<th>폐업여부</th>
+			<td th:text="${companyDto.aShutDownYn}"></td>
+			<th>폐업일</th>
+			<td th:text="${companyDto.aShutDownDt}"></td>
+			<th>매출합치기</th>
+			<td th:text="${companyDto.salesGroupName}"></td>
+			<td colspan="4"></td>
+		</tr>
+	</table>
+</div>

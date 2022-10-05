@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+
+	function convertGoodsDetail(seq) {
+		document.location.href="/convert/convertGoodsDetails.do?seq="+seq;
+	}
+	
+</script>
+</head>
+<div layout:fragment="content">
+	<div>
+		<table class="convertTable">
+			<tr>
+				<th>관리번호</th>
+				<th>품명</th>
+				<th>규격</th>
+				<th>단위</th>
+				<th>분류</th>
+<!-- 				<th>판매가1</th> -->
+				<th>단위구분</th>
+				<th>체크</th>
+				<th>수정</th>
+			</tr>
+			<tr th:if="${#lists.size(list)} > 0" th:each="lists : ${list}">
+				<td th:text="${lists.convertGoodsAdminSeq}"></td>
+				<td th:text="${lists.convertGoodsGoodsName1}"></td>
+				<td th:text="${lists.convertGoodsStandard}"></td>
+				<td th:text="${lists.convertGoodsUnit}"></td>
+				<td th:text="${lists.convertGoodsCategory}"></td>
+<!-- 				<td th:text="${lists.convertGoodsSellPrice1}"></td> -->
+				<td th:text="${lists.convertGoodsUnitType}"></td>
+				<td th:text="${lists.convertVerify}"></td>
+				<td>
+					<input type="button" value="수정" th:onclick="javascript:convertGoodsDetail([[${lists.seq}]])"/>
+				</td>
+			</tr>
+			<!-- <tr th:if="${#lists.size(list)} > 0" th:each="lists : ${list}">
+				<td th:text="${lists.convertGoodsAdminSeq}"></td>
+				<td th:text="${lists.convertGoodsName1}"></td>
+				<td th:text="${lists.convertGoodsStandard}"></td>
+				<td th:text="${lists.convertGoodsCategory}"></td>
+				<td th:text="${lists.convertGoodsSellPrice1}"></td>
+				<td th:text="${lists.convertGoodsUnitType}"></td>
+				<td>&nbsp;</td>
+			</tr> -->
+		</table>
+	</div>
+</div>

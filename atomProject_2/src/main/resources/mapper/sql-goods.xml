@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atom.mapper.GoodsMapper">
+	<select id="selectSearchGoodsList" resultType="com.atom.dto.GoodsDto" parameterType="com.atom.dto.GoodsDto">
+		SELECT
+				a.seq
+			,	a.admin_seq
+			,	a.standard_seq
+			,	a.barcode
+			,	a.name_code_1
+			,	a.name_code_2
+			,	a.name_code_3
+			,	a.name_code_4
+			,	a.model_name
+			,	a.goods_group
+			,	a.goods_name_1
+			,	a.goods_name_2
+			,	a.standard
+			,	a.unit
+			,	a.unit_count
+			,	a.buy_com
+			,	b.name_1					AS		buy_company_name
+			,	a.make_com
+			,	c.name						AS		make_company_name
+			,	a.part_count
+			,	a.buy_price
+			,	a.prime_price
+			,	a.buy_discount
+			,	a.customer_price
+			,	a.sell_price_1
+			,	a.sell_price_2
+			,	a.sell_price_3
+			,	a.sell_price_4
+			,	a.sell_price_5
+			,	a.sell_price_6
+			,	a.sell_price_7
+			,	a.sell_price_8
+			,	a.sell_price_9
+			,	a.sell_price_10
+			,	a.sell_price_11
+			,	a.sell_price_12
+			,	a.sell_price_13
+			,	a.sell_price_14
+			,	a.category
+			,	a.country
+			,	d.code_name				AS		country_name
+			,	a.discontinue
+			,	a.discontinue_dt
+			,	a.etc
+			,	a.buy_type
+			,	e.name						AS		buy_type_name
+			,	a.item_group_1
+			,	a.item_group_2
+			,	a.item_group_3
+			,	a.item_group_4
+			,	a.item_group_5
+			,	f.code_name				AS		item_group_one_name
+			,	g.code_name				AS		item_group_two_name
+			,	h.code_name				AS		item_group_three_name
+			,	i.code_name				AS		item_group_four_name
+			,	j.code_name				AS		item_group_five_name
+			,	a.enter_dt
+			,	a.unit_type
+			,	a.goods_image_url_1
+			,	a.goods_image_url_2
+			,	a.brand
+			,	k.name						AS		brand_name
+			,	a.use_yn
+			,	a.del_yn
+			,	a.insert_dt
+			,	a.update_dt
+		FROM
+				tb_goods a
+		LEFT OUTER JOIN	tb_buy_company			b	ON	a.buy_com			= b.admin_code
+		LEFT OUTER JOIN	tb_make_com				c	ON	a.make_com		= c.admin_code
+		LEFT OUTER JOIN	tb_country					d	ON	a.country			= d.admin_code
+		LEFT OUTER JOIN	tb_buy_type				e	ON	a.buy_type			= e.admin_code
+		LEFT OUTER JOIN	tb_item_group_one		f	ON	a.item_group_1	= f.admin_code
+		LEFT OUTER JOIN	tb_item_group_two		g	ON	a.item_group_2	= g.admin_code
+		LEFT OUTER JOIN	tb_item_group_three	h	ON	a.item_group_3	= h.admin_code
+		LEFT OUTER JOIN	tb_item_group_four		i	ON	a.item_group_4	= i.admin_code
+		LEFT OUTER JOIN	tb_item_group_five		j	ON	a.item_group_5	= j.admin_code
+		LEFT OUTER JOIN	tb_brand					k	ON	a.brand				= k.admin_code
+		
+		WHERE
+					1=1
+			<if test="adminSeq != null">
+			AND	a.admin_seq = "${adminSeq}"
+			</if>
+			
+	</select>
+	
+	<!-- 상품명 자동완성. -->
+	<select id="selectAutoSearchGoodsList" parameterType="com.atom.dto.GoodsDto" resultType="com.atom.dto.GoodsDto">
+		SELECT
+				seq
+			,	admin_seq
+			,	goods_name_1
+			,	standard
+			,	model_name
+		FROM
+				tb_goods
+		WHERE
+					1=1
+			<if test="searchGoodsName != null">
+			AND	goods_name_1	LIKE	"%${searchGoodsName}%"
+			</if>	
+			<if test="searchModelName != null">
+			AND	model_name		LIKE	"%${searchModelName}%"
+			</if>
+	</select>
+	
+	<!-- 모델명 자동완성. -->
+	<select id="selectAutoSearchModelList" parameterType="String" resultType="com.atom.dto.GoodsDto">
+		SELECT
+				seq
+			,	admin_seq
+			,	model_name
+			,	standard
+		FROM
+				tb_goods
+		WHERE
+				model_name		LIKE		"%${searchModelName}%"
+	</select>
+</mapper>

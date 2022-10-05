@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="headerFragment">
+    <div>
+    	<table class="headTable">
+    		<tr>
+    			<th scope="row">
+    				관리
+    			</th>
+    			<td>
+    				<a th:href="@{/excel/excelView.do}">파일 리스트</a><br/>
+    				<a th:href="@{/main/basicCodeList.do}">기초코드관리</a>
+    			</td>
+    			<td>
+    				<a th:href="@{/convert/convertInsert.do}">검증 입력</a><br/>
+    				<a th:href="@{/convert/convertCheck.do}">검증 확인</a><br/>
+    				<a th:href="@{/convert/convertCompanyResult.do}">매출처 검증</a><br/>
+    				<a>상품 검증</a>
+<!-- 					<a th:href="@{/excel/excelUploadView.do}">엑셀 업로드 화면</a><br/> -->
+<!-- 					<a th:href="@{/convert/convertSalesList.do}">매출 리스트 검증</a><br/> -->
+<!-- 					<a th:href="@{/excel/excelUpload.do}">엑셀 업로드 테스트</a><br/> -->
+					<a th:href="@{/convert/convertSalesResult.do}">매출 검증</a>
+					
+    			</td>
+    			<td>
+    			    	<a th:href="@{/company/salesCompany.do}">매출처 관리</a><br/>
+    			    	<a th:href="@{/company/buyCompany.do}">매입처 관리</a><br/>
+    			    	<a th:href="@{/goods/goodsListMove.do}">상품관리</a>
+    			    	
+<!--     				<a th:href="@{}">상품 관리</a> -->
+    			</td>
+    			<td>
+    				<!-- <a th:href="@{/brand/brandList.do}">브랜드 관리</a> -->
+    			</td>
+    			<td>
+    				그룹 관리
+    			</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">
+    				조회
+    			</th>
+    			<td>
+    				<!-- <a th:href="@{/sales/salesList.do}">거래처별 매출 조회</a> -->
+    			</td>
+    			<td>
+    				<!-- <a th:href="@{/sales/salesGroupList.do}">거래처 그룹별 매출 조회</a> -->
+    			</td>
+    			<td>
+    				상품별 매출 조회
+    			</td>
+    			<td>
+    				브랜드별 매출 조회
+    			</td>
+    			<td>
+    				그룹별 매출 조회
+    			</td>
+    			
+    	</table>
+    </div>
+</header>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+
+//	입력 양식 다운로드.
+	function insertDownload() {
+		document.location.href="/excelTemplate/품목그룹1_입력양식.xlsx";
+	}
+	
+//	데이터 다운로드.	
+	function download() {
+		document.location.href="/itemGroupOne/itemGroupOneDownload.do";
+	}
+
+//	상세정보 이동.
+	function itemGroupOneDetail(seq) {
+		document.location.href="/itemGroupOne/itemGroupDetail.do?seq="+seq;
+	}
+	
+</script>
+
+</head>
+<div layout:fragment="content">
+	<div>
+		<table class="diviTable">
+			<tr>
+				<th>관리번호</th>
+				<th>코드명</th>
+				<th>비고</th>
+				<th>&nbsp;</th>
+			</tr>
+			<tr th:if="${#lists.size(list)} > 0" th:each="lists : ${list}">
+				<td th:text="${lists.adminCode}"></td>
+				<td th:text="${lists.codeName}"></td>
+				<td th:text="${lists.etc}"></td>
+				<td>
+					<input type="button" value="수정" th:onclick="javascript:itemGroupOneDetail([[${lists.seq}]])"/>
+				</td>
+			</tr>
+			<tr th:unless="${#lists.size(list)} >0">
+				<td>검색결과 없음</td>
+				<td>&nbsp;</td>
+			</tr>
+		</table>
+		<table class="listTable">
+			<tr>
+				<td>
+					양식 다운로드
+				</td>
+				<td>
+					<input type="button" value="입력용" onclick="javascript:insertDownload()"/>
+				</td>
+				<td>
+					<input type="button" value="수정용" onclick="javascript:download()"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<form name="excelUploadForm" id="excelUploadForm" method="post" enctype="multipart/form-data">
+		<table class="listTable">
+			<tr>
+				<td>
+					수정 파일 업로드
+				</td>
+				<td>
+					<input type="file" name="file" id="file" accept=".xlsx"/>
+				</td>
+				<td>
+ 					<input type="submit" value="수정하기" onclick="javascript:excelUploadForm.action='/itemGroupOne/itemGroupOneInsert.do';"/> 
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+</html>

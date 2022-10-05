@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+function _onSubmit(){
+ /*    
+    if($("#file").val() == ""){
+        alert("파일을 업로드해주세요.");
+        $("#file").focus();
+        return false;
+    }
+    
+    if(!confirm(gTxt("confirm.save"))){
+        return false;
+    }
+     */
+    return true;
+}
+</script>
+
+</head>
+<div layout:fragment="content">
+	<form name="excelUploadForm" id="excelUploadForm" method="post" onsubmit="return _onSubmit();" action="/excel/excelUploadDone.do" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td>
+					파일업로드
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="file" name="file" id="file" accept=".xlsx"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+ 					<input type="submit" value="업로드"> 
+<!--  					<input type="button" value="업로드" th:href="@{/excel/excelUploadDone.do}"/> -->
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+</html>

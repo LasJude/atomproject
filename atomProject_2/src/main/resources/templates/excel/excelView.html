@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<head>
+<script type="text/javascript">
+</script>
+
+</head>
+<div layout:fragment="content">
+	<table>
+		<tr>
+			<td>번호</td>
+			<td>이름</td>
+		</tr>
+		<tr th:if="${#lists.size(excelList)} > 0" th:each="lists : ${excelList}">
+			<td th:text="${lists.num}"></td>
+			<td th:text="${lists.name}"></td>
+		</tr>
+		<tr th:unless="${#lists.size(excelList)} >0">
+			<td>결과 없음</td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+</div>
+</html>

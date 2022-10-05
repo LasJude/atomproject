@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atom.mapper.ConvertMapper">
+
+	
+	<!-- 거래처 변환 검증 입력 -->
+	<insert id="insertConvertCompany" parameterType="com.atom.dto.ConvertDto">
+	INSERT INTO	tb_convert_company
+		(
+				convert_com_deal_divi
+			,	convert_com_admin_code
+			,	convert_com_code
+			,	convert_com_card
+			,	convert_com_name_1
+			,	convert_com_department
+			,	convert_com_charge
+			,	convert_com_charge_phone_1
+			,	convert_com_phone_2
+			,	convert_com_phone_1
+			,	convert_com_fax
+			,	convert_com_email
+			,	convert_com_depa_group
+			,	convert_com_attri
+			,	convert_com_divi
+			,	convert_com_deal_type
+			,	convert_com_course
+			,	convert_com_sales_staff
+			,	convert_com_deli_address
+			,	convert_com_deli_address_etc
+			,	convert_com_name_2
+			,	convert_com_corpor_number
+			,	convert_com_number
+			,	convert_com_place_number
+			,	convert_com_ceo
+			,	convert_com_tax_charge
+			,	convert_com_status
+			,	convert_com_type
+			,	convert_com_address
+			,	convert_com_address_etc
+			,	convert_com_tax_phone_1
+			,	convert_com_tax_phone_2
+			,	convert_com_tax_email
+			,	convert_com_deal_yn
+			,	convert_com_etc
+			,	convert_com_event_yn
+			,	convert_com_a_shut_down_yn
+			,	convert_com_a_shut_down_dt
+		)
+		VALUES
+		<foreach item="item" collection="list" separator=" , ">
+			(
+					"${item.convertComDealDivi}"
+				,	"${item.convertComAdminCode}"
+				,	"${item.convertComCode}"
+				,	"${item.convertComCard}"
+				,	"${item.convertComName1}"
+				,	"${item.convertComDepartment}"
+				,	"${item.convertComCharge}"
+				,	"${item.convertComChargePhone1}"
+				,	"${item.convertComPhone2}"
+				,	"${item.convertComPhone1}"
+				,	"${item.convertComFax}"
+				,	"${item.convertComEmail}"
+				,	"${item.convertComDepaGroup}"
+				,	"${item.convertComAttri}"
+				,	"${item.convertComDivi}"
+				,	"${item.convertComDealType}"
+				,	"${item.convertComCourse}"
+				,	"${item.convertComSalesStaff}"
+				,	"${item.convertComDeliAddress}"
+				,	"${item.convertComDeliAddressEtc}"
+				,	"${item.convertComName2}"
+				,	"${item.convertComCorporNumber}"
+				,	"${item.convertComNumber}"
+				,	"${item.convertComPlaceNumber}"
+				,	"${item.convertComCeo}"
+				,	"${item.convertComTaxCharge}"
+				,	"${item.convertComStatus}"
+				,	"${item.convertComType}"
+				,	"${item.convertComAddress}"
+				,	"${item.convertComAddressEtc}"
+				,	"${item.convertComTaxPhone1}"
+				,	"${item.convertComTaxPhone2}"
+				,	"${item.convertComTaxEmail}"
+				,	"${item.convertComDealYn}"
+				,	"${item.convertComEtc}"
+				,	"${item.convertComEventYn}"
+				,	"${item.convertComAShutDownYn}"
+				,	"${item.convertComAShutDownDt}"
+			)
+		</foreach>
+	</insert>
+
+	<!-- 상품 정보 입력 -->
+	<insert id="insertConvertGoods" parameterType="com.atom.dto.ConvertDto">
+		INSERT INTO tb_convert_goods
+			(
+				convert_goods_admin_seq
+			,	convert_goods_standard_seq
+			,	convert_goods_unit_seq
+			,	convert_goods_barcode
+			,	convert_goods_name_code_1
+			,	convert_goods_name_code_2
+			,	convert_goods_name_code_3
+			,	convert_goods_name_code_4
+			,	convert_goods_model_name
+			,	convert_goods_goods_name_1
+			,	convert_goods_goods_name_2
+			,	convert_goods_standard
+			,	convert_goods_unit
+			,	convert_goods_unit_count
+			,	convert_goods_goods_group
+			,	convert_goods_category
+			,	convert_goods_buy_com
+			,	convert_goods_make_com
+			,	convert_goods_buy_price
+			,	convert_goods_prime_price
+			,	convert_goods_customer_price
+			,	convert_goods_sell_price_1
+			,	convert_goods_sell_price_2
+			,	convert_goods_sell_price_3
+			,	convert_goods_sell_price_4
+			,	convert_goods_sell_price_5
+			,	convert_goods_sell_price_6
+			,	convert_goods_sell_price_7
+			,	convert_goods_sell_price_8
+			,	convert_goods_sell_price_9
+			,	convert_goods_sell_price_10
+			,	convert_goods_sell_price_11
+			,	convert_goods_sell_price_12
+			,	convert_goods_sell_price_13
+			,	convert_goods_sell_price_14
+			,	convert_goods_discontinue
+			,	convert_goods_discontinue_dt
+			,	convert_goods_country
+			,	convert_goods_etc
+			,	convert_goods_enter_dt
+			,	convert_goods_item_group_1
+			,	convert_goods_item_group_2
+			,	convert_goods_item_group_3
+			,	convert_goods_item_group_4
+			,	convert_goods_item_group_5
+			,	convert_goods_unit_type
+			)
+		VALUES
+		<foreach item="item" collection="list" separator=" , ">
+			(
+					"${item.convertGoodsAdminSeq}"
+				,	"${item.convertGoodsStandardSeq}"
+				,	"${item.convertGoodsUnitSeq}"
+				,	"${item.convertGoodsBarcode}"
+				,	"${item.convertGoodsNameCode1}"
+				,	"${item.convertGoodsNameCode2}"
+				,	"${item.convertGoodsNameCode3}"
+				,	"${item.convertGoodsNameCode4}"
+				,	"${item.convertGoodsModelName}"
+				,	"${item.convertGoodsGoodsName1}"
+				,	"${item.convertGoodsGoodsName2}"
+				,	"${item.convertGoodsStandard}"
+				,	"${item.convertGoodsUnit}"
+				,	"${item.convertGoodsUnitCount}"
+				,	"${item.convertGoodsGoodsGroup}"
+				,	"${item.convertGoodsCategory}"
+				,	"${item.convertGoodsBuyCom}"
+				,	"${item.convertGoodsMakeCom}"
+				,	"${item.convertGoodsBuyPrice}"
+				,	"${item.convertGoodsPrimePrice}"
+				,	"${item.convertGoodsCustomerPrice}"
+				,	"${item.convertGoodsSellPrice1}"
+				,	"${item.convertGoodsSellPrice2}"
+				,	"${item.convertGoodsSellPrice3}"
+				,	"${item.convertGoodsSellPrice4}"
+				,	"${item.convertGoodsSellPrice5}"
+				,	"${item.convertGoodsSellPrice6}"
+				,	"${item.convertGoodsSellPrice7}"
+				,	"${item.convertGoodsSellPrice8}"
+				,	"${item.convertGoodsSellPrice9}"
+				,	"${item.convertGoodsSellPrice10}"
+				,	"${item.convertGoodsSellPrice11}"
+				,	"${item.convertGoodsSellPrice12}"
+				,	"${item.convertGoodsSellPrice13}"
+				,	"${item.convertGoodsSellPrice14}"
+				,	"${item.convertGoodsDiscontinue}"
+				,	"${item.convertGoodsDiscontinueDt}"
+				,	"${item.convertGoodsCountry}"
+				,	"${item.convertGoodsEtc}"
+				,	"${item.convertGoodsEnterDt}"
+				,	"${item.convertGoodsItemGroup1}"
+				,	"${item.convertGoodsItemGroup2}"
+				,	"${item.convertGoodsItemGroup3}"
+				,	"${item.convertGoodsItemGroup4}"
+				,	"${item.convertGoodsItemGroup5}"
+				,	"${item.convertGoodsUnitType}"
+			)
+		</foreach>
+	</insert>
+
+	<!-- 매출 정보 입력 -->
+	<insert id="insertConvertSales" parameterType="java.util.List">
+		INSERT INTO tb_convert 
+			(
+				com_charge
+			,	sales_dt
+			,	com_code
+			,	com_company
+			,	goods_code
+			,	barcode
+			,	model_code
+			,	goods_name
+			,	standard
+			,	unit
+			,	unit_count
+			,	buy_company
+			,	make_company
+			,	sales_count
+			,	price
+			,	sales_price
+			,	customer_price
+			,	com_attri
+			,	com_divi
+			,	com_depa_group
+			,	com_deal_type
+			,	sales_employee
+			,	sales_course
+			,	goods_type
+			,	item_group_one
+			,	item_group_two
+			,	item_group_three
+			,	item_group_four
+			,	item_group_five
+			,	etc
+			,	statement_memo
+			,	admin_memo
+			)
+		VALUES
+		<foreach item="item" collection="list" separator=" , ">
+			(
+				"${item.comCharge}"
+			,	"${item.salesDt}"
+			,	"${item.comCode}"
+			,	"${item.comCompany}"
+			,	"${item.goodsCode}"
+			,	"${item.barcode}"
+			,	"${item.modelCode}"
+			,	"${item.goodsName}"
+			,	"${item.standard}"
+			,	"${item.unit}"
+			,	${item.unitCount}
+			,	"${item.buyCompany}"
+			,	"${item.makeCompany}"
+			,	${item.salesCount}
+			,	${item.price}
+			,	${item.salesPrice}
+			,	${item.customerPrice}
+			,	"${item.comAttri}"
+			,	"${item.comDivi}"
+			,	"${item.comDepaGroup}"
+			,	"${item.comDealType}"
+			,	"${item.salesEmployee}"
+			,	"${item.salesCourse}"
+			,	"${item.goodsType}"
+			,	"${item.itemGroupOne}"
+			,	"${item.itemGroupTwo}"
+			,	"${item.itemGroupThree}"
+			,	"${item.itemGroupFour}"
+			,	"${item.itemGroupFive}"
+			,	"${item.etc}"
+			,	"${item.statementMemo}"
+			,	"${item.adminMemo}"
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 변환 매출 검색 -->
+	<select id="selectTbConvert" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				com_charge
+			,	sales_dt
+			,	com_code
+			,	com_company
+			,	goods_code
+			,	barcode
+			,	model_code
+			,	goods_name
+			,	standard
+			,	unit
+			,	unit_count
+			,	buy_company
+			,	make_company
+			,	sales_count
+			,	price
+			,	sales_price
+			,	customer_price
+			,	com_attri
+			,	com_divi
+			,	com_depa_group
+			,	com_deal_type
+			,	sales_employee
+			,	sales_course
+			,	goods_type
+			,	item_group_one
+			,	item_group_two
+			,	item_group_three
+			,	item_group_four
+			,	item_group_five
+			,	etc
+			,	statement_memo
+			,	admin_memo
+		FROM
+				tb_convert
+		WHERE
+				1=1
+		ORDER by
+				seq ASC
+	
+	</select>
+	
+	<!-- 매출 정보와 매출처 테이블을 비교해서 매출처 테이블에 입력이 안되어있는 거래처를 찾음. -->
+	<select id="selectEmptyCompany" resultType="com.atom.dto.ConvertDto">
+
+		SELECT
+				DISTINCT a.com_code AS empty_company
+			,	a.com_company
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_sales_company b
+		ON
+				a.com_code = b.admin_code
+		WHERE
+				b.admin_code IS NULL
+
+	</select>
+	
+	<!-- 매출 정보와 상품 테이블을 비교해서 상품 테이블에 입력이 안되어있는 상품 정보를 찾음. -->
+	<select id="selectEmptyGoods" resultType="com.atom.dto.ConvertDto">
+	
+		SELECT
+				DISTINCT a.goods_code AS empty_goods
+			,	a.goods_name
+			,	a.standard
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_goods b
+		ON
+				a.goods_code = b.admin_seq
+		WHERE
+				b.admin_seq IS NULL
+	
+	</select>
+	
+	<!-- 매출 정보와 고객 속성 테이블을 비교해서 고객 속성 테이블에 입력이 안되어있는 고객 속성을 찾음. -->
+	<select id="selectEmptyAttri" resultType="com.atom.dto.ConvertDto">
+	
+		SELECT
+				DISTINCT a.com_attri AS empty_attri
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_com_attribute b
+		ON
+				a.com_attri = b.code_name
+		WHERE
+				b.code_name IS NULL
+	
+	</select>
+	
+	<!-- 매출 정보와 매입처 테이블을 비교해서 매입처 테이블에 입력이 안되어있는 매입처를 찾음. -->
+	<select id="selectEmptyBuyCom" resultType="com.atom.dto.ConvertDto">
+	
+		SELECT
+				DISTINCT	a.buy_company AS empty_buy_com
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_buy_company b
+		ON
+				a.buy_company = b.name_1
+		WHERE
+				b.NAME_1 IS NULL
+	
+	</select>
+	
+	<!-- 매출 정보와 제조사 테이블을 비교해서 제조사 테이블에 입력이 안되어있는 제조사를 찾음. -->
+	<select id="selectEmptyMakeCom" resultType="com.atom.dto.ConvertDto">
+
+		SELECT
+				DISTINCT a.make_company AS empty_make_com
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_make_com b
+		ON
+				a.make_company = b.name
+		WHERE
+				b.name IS NULL
+				
+	</select>
+	
+	<!-- 매출 정보와 고객 분류 테이블을 비교해서 고객 분류 테이블에 입력이 안되어있는 고객 분류를 찾음. -->
+	<select id="selectEmptyComDivi" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.com_divi AS empty_com_divi
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_com_division b
+		ON
+				a.com_divi = b.code_name
+		WHERE
+				b.code_name IS NULL
+	</select>
+	
+	<!-- 매출 정보와 부서그룹 테이블을 비교해서 부서그룹 테이블에 입력이 안되어있는 부서그룹을 찾음. -->
+	<select id="selectEmptyDepaGroup" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.com_depa_group AS empty_depa_group
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_depa_group b
+		ON
+				a.com_depa_group = b.name
+		WHERE
+				b.name IS NULL
+	</select>
+	
+	<!-- 매출 정보와 거래분류 테이블을 비교해서 거래분류 테이블에 입력이 안되어있는 거래분류를 찾음. -->
+	<select id="selectEmptyComDealType" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.com_deal_type AS com_deal_type
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_deal_type b
+		ON
+				a.com_deal_type = b.code_name
+		WHERE
+				b.code_name IS NULL
+	</select>
+	
+	<!-- 매출 정보와 사원 테이블을 비교해서 사원 테이블에 입력이 안되어있는 사원을 찾음. -->
+	<select id="selectEmptyEmployee" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.sales_employee AS empty_employee
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_employee b
+		ON
+				a.sales_employee = b.name
+		WHERE
+				b.name IS NULL
+	
+	</select>
+	
+	<!-- 매출 정보와 매출코스 테이블을 비교해서 매출코스에 입력이 안되어있는 코스를 찾음. -->
+	<select id="selectEmptyCourse" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.sales_course AS empty_course
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_course b
+		ON
+				a.sales_course = b.code_name
+		WHERE
+				b.code_name IS NULL
+	</select>
+	
+	<!-- 매출 정보와 품목그룹1 테이블을 비교해서 품목그룹1에 입력이 안되어있는 품목그룹1을 찾음. -->
+	<select id="selectEmptyItemGroupOne" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.item_group_one AS empty_item_group_one
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_item_group_one b
+		ON
+				a.item_group_one = b.code_name
+		WHERE
+				b.code_name IS NULL
+	</select>
+	
+	<!-- 매출 정보와 품목그룹2 테이블을 비교해서 품목그룹2에 입력이 안되어있는 품목그룹2를 찾음. -->
+	<select id="selectEmptyItemGroupTwo" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.item_group_two AS empty_item_group_two
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_item_group_two b
+		ON
+				a.item_group_two = b.code_name
+		WHERE
+				b.code_name IS NULL
+	</select>
+
+	<!-- 매출 정보와 품목그룹3 테이블을 비교해서 품목그룹3에 입력이 안되어있는 품목그룹3을 찾음. -->
+	<select id="selectEmptyItemGroupThree" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.item_group_three AS empty_item_group_three
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_item_group_three b
+		ON
+				a.item_group_three = b.code_name
+		WHERE
+				b.code_name IS NULL
+	</select>
+	
+	<!-- 매출 정보와 품목그룹4 테이블을 비교해서 품목그룹4에 입력이 안되어있는 품목그룹4를 찾음. -->
+	<select id="selectEmptyItemGroupFour" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.item_group_four AS empty_item_group_four
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_item_group_four b
+		ON
+				a.item_group_four = b.code_name
+		WHERE
+				b.code_name IS NULL
+	</select>
+	
+	<!-- 매출 정보와 품목그룹5 테이블을 비교해서 품목그룹5에 입력이 안되어있는 품목그룹5를 찾음. -->
+	<select id="selectEmptyItemGroupFive" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				DISTINCT a.item_group_five AS empty_item_group_five
+		FROM
+				tb_convert a
+		LEFT OUTER JOIN
+				tb_item_group_five b
+		ON
+				a.item_group_five = b.code_name
+		WHERE
+				b.code_name IS NULL
+	</select>
+
+	<!-- 거래처 검증 테이블 삭제 -->
+	<select id="deleteConvertCompanyTable" resultType="String">
+		TRUNCATE tb_convert_company
+	</select>
+
+	<!-- 매출 검증 테이블 삭제 -->	
+	<select id="deleteConvertTable" resultType="String">
+		TRUNCATE tb_convert
+	</select>
+	
+	<!-- 상품 검증 테이블 삭제 -->
+	<select id="deleteConvertGoodsTable" resultType="String">
+		TRUNCATE tb_convert_goods
+	</select>
+	
+	<select id="selectConvertCompany" resultType="com.atom.dto.ConvertDto">
+		SELECT
+				seq
+			,	convert_com_deal_divi
+			,	convert_com_admin_code
+			,	convert_com_code
+			,	convert_com_card
+			,	convert_com_name_1
+			,	convert_com_department
+			,	convert_com_charge
+			,	convert_com_charge_phone_1
+			,	convert_com_phone_2
+			,	convert_com_phone_1
+			,	convert_com_fax
+			,	convert_com_email
+			,	convert_com_depa_group
+			,	convert_com_attri
+			,	convert_com_divi
+			,	convert_com_deal_type
+			,	convert_com_course
+			,	convert_com_sales_staff
+			,	convert_com_deli_address
+			,	convert_com_deli_address_etc
+			,	convert_com_name_2
+			,	convert_com_corpor_number
+			,	convert_com_number
+			,	convert_com_place_number
+			,	convert_com_ceo
+			,	convert_com_tax_charge
+			,	convert_com_status
+			,	convert_com_type
+			,	convert_com_address
+			,	convert_com_address_etc
+			,	convert_com_tax_phone_1
+			,	convert_com_tax_phone_2
+			,	convert_com_tax_email
+			,	convert_com_deal_yn
+			,	convert_com_etc
+			,	convert_com_event_yn
+			,	convert_com_a_shut_down_yn
+			,	convert_com_a_shut_down_dt
+		FROM
+				tb_convert_company
+	</select>
+
+	<!-- 상품 검증 테이블 검색. -->
+	<select id="selectConvertGoods" resultType="com.atom.dto.ConvertDto" parameterType="com.atom.dto.ConvertDto">
+		SELECT
+				seq
+			,	convert_goods_admin_seq
+			,	convert_goods_standard_seq
+			,	convert_goods_unit_seq
+			,	convert_goods_barcode
+			,	convert_goods_name_code_1
+			,	convert_goods_name_code_2
+			,	convert_goods_name_code_3
+			,	convert_goods_name_code_4
+			,	convert_goods_model_name
+			,	convert_goods_goods_name_1
+			,	convert_goods_goods_name_2
+			,	convert_goods_standard
+			,	convert_goods_unit
+			,	convert_goods_unit_count
+			,	convert_goods_goods_group
+			,	convert_goods_category
+			,	convert_goods_buy_com
+			,	convert_goods_make_com
+			,	convert_goods_buy_price
+			,	convert_goods_prime_price
+			,	convert_goods_customer_price
+			,	convert_goods_sell_price_1
+			,	convert_goods_sell_price_2
+			,	convert_goods_sell_price_3
+			,	convert_goods_sell_price_4
+			,	convert_goods_sell_price_5
+			,	convert_goods_sell_price_6
+			,	convert_goods_sell_price_7
+			,	convert_goods_sell_price_8
+			,	convert_goods_sell_price_9
+			,	convert_goods_sell_price_10
+			,	convert_goods_sell_price_11
+			,	convert_goods_sell_price_12
+			,	convert_goods_sell_price_13
+			,	convert_goods_sell_price_14
+			,	convert_goods_discontinue
+			,	convert_goods_discontinue_dt
+			,	convert_goods_country
+			,	convert_goods_etc
+			,	convert_goods_enter_dt
+			,	convert_goods_item_group_1
+			,	convert_goods_item_group_2
+			,	convert_goods_item_group_3
+			,	convert_goods_item_group_4
+			,	convert_goods_item_group_5
+			,	convert_goods_unit_type
+		FROM
+				TB_CONVERT_GOODS
+		WHERE
+					1=1
+				<if test="seq != null">
+			AND	seq	=	${seq}
+				</if>
+	</select>
+	
+	<!-- 상품 검증 테이블 검색. -->
+	<select id="selectConvertGoodsDetails" resultType="com.atom.dto.ConvertDto" parameterType="Integer">
+		SELECT
+				a.seq
+			,	a.convert_goods_admin_seq
+			,	a.convert_goods_standard_seq
+			,	a.convert_goods_unit_seq
+			,	a.convert_goods_barcode
+			,	a.convert_goods_name_code_1
+			,	a.convert_goods_name_code_2
+			,	a.convert_goods_name_code_3
+			,	a.convert_goods_name_code_4
+			,	a.convert_goods_model_name
+			,	a.convert_goods_goods_name_1
+			,	a.convert_goods_goods_name_2
+			,	a.convert_goods_standard
+			,	a.convert_goods_unit
+			,	a.convert_goods_unit_count
+			,	a.convert_goods_goods_group
+			,	a.convert_goods_category
+			,	a.convert_goods_buy_com
+			,	a.convert_goods_make_com
+			,	a.convert_goods_buy_price
+			,	a.convert_goods_prime_price
+			,	a.convert_goods_customer_price
+			,	a.convert_goods_sell_price_1
+			,	a.convert_goods_sell_price_2
+			,	a.convert_goods_sell_price_3
+			,	a.convert_goods_sell_price_4
+			,	a.convert_goods_sell_price_5
+			,	a.convert_goods_sell_price_6
+			,	a.convert_goods_sell_price_7
+			,	a.convert_goods_sell_price_8
+			,	a.convert_goods_sell_price_9
+			,	a.convert_goods_sell_price_10
+			,	a.convert_goods_sell_price_11
+			,	a.convert_goods_sell_price_12
+			,	a.convert_goods_sell_price_13
+			,	a.convert_goods_sell_price_14
+			,	a.convert_goods_discontinue
+			,	a.convert_goods_discontinue_dt
+			,	a.convert_goods_country
+			,	a.convert_goods_etc
+			,	a.convert_goods_enter_dt
+			,	a.convert_goods_item_group_1
+			,	a.convert_goods_item_group_2
+			,	a.convert_goods_item_group_3
+			,	a.convert_goods_item_group_4
+			,	a.convert_goods_item_group_5
+			,	a.convert_goods_unit_type
+			,	b.admin_code									AS		item_group_one_code
+			,	c.admin_code									AS		item_group_two_code
+			,	d.admin_code									AS		item_group_three_code
+			,	e.admin_code									AS		item_group_four_code
+			,	f.admin_code									AS		item_group_five_code
+		FROM
+				TB_CONVERT_GOODS		a
+		LEFT OUTER JOIN	tb_item_group_one		b		ON	a.convert_goods_item_group_1	=	b.code_name
+		LEFT OUTER JOIN	tb_item_group_two		c		ON	a.convert_goods_item_group_2	=	c.code_name
+		LEFT OUTER JOIN	tb_item_group_three	d		ON	a.convert_goods_item_group_3 =	d.code_name
+		LEFT OUTER JOIN	tb_item_group_four		e		ON	a.convert_goods_item_group_4	=	e.code_name
+		LEFT OUTER JOIN	tb_item_group_five		f		ON	a.convert_goods_item_group_5	=	f.code_name
+		WHERE
+					1=1
+				<if test="seq != null">
+			AND	a.seq		=	${seq}
+				</if>
+	</select>
+</mapper>
